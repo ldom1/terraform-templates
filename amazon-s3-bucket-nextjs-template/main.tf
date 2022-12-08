@@ -14,12 +14,12 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "girondom-latabledesgironffroy-dev"
+  bucket = "<Bucket-name>"
 
   tags = {
-    CostCenter  = "La Table Des Gironffroy"
-    MyProject   = "La Table Des Gironffroy"
-    ProjectType = "PersonalProject"
+    CostCenter  = "<TAG>"
+    MyProject   = "<TAG>"
+    ProjectType = "<TAG>
   }
 }
 
@@ -66,7 +66,7 @@ data "aws_iam_policy_document" "allow_iam_user_to_interact_with_bucket" {
   statement {
     principals {
       type        = "AWS"
-      identifiers = ["arn:aws:iam::272517345723:user/girondom_latabledesgironffroy_user"]
+      identifiers = ["<IAM_USER>"]
     }
 
     actions = [
