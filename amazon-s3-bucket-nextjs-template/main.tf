@@ -19,13 +19,21 @@ resource "aws_s3_bucket" "b" {
   tags = {
     CostCenter  = "<TAG>"
     MyProject   = "<TAG>"
-    ProjectType = "<TAG>
+    ProjectType = "<TAG>"
   }
 }
 
 resource "aws_s3_bucket_acl" "bucket_acl" {
   bucket = aws_s3_bucket.b.id
   acl    = "private"
+}
+
+resource "aws_s3_bucket_ownership_controls" "bucket_ownership_controls" {
+  bucket = aws_s3_bucket.b.id
+
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
 }
 
 resource "aws_s3_bucket_cors_configuration" "bucket_cors_configuration" {
@@ -37,14 +45,6 @@ resource "aws_s3_bucket_cors_configuration" "bucket_cors_configuration" {
     allowed_origins = ["*"]
     expose_headers  = ["ETag"]
     max_age_seconds = 3000
-  }
-}
-
-resource "aws_s3_bucket_ownership_controls" "bucket_ownership_controls" {
-  bucket = aws_s3_bucket.b.id
-
-  rule {
-    object_ownership = "BucketOwnerPreferred"
   }
 }
 
